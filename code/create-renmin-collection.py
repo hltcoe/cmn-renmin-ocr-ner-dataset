@@ -11,13 +11,14 @@ Script must reside in the code directory of the HLTCOE distribution.
 Takes a single argument: The name of the directory into which the collection should be placed.
 """
 
-MIN_PYTHON = (3, 6)
-if sys.version_info < MIN_PYTHON:
-    sys.exit("Python {}.{} or later is required.\n".format(*MIN_PYTHON))
+DEFAULT_MAX_TRIES = 3
+DEFAULT_THROTTLE = 5
 
 def main():
         
     parser = argparse.ArgumentParser(description='Download and create the HLTCOE Renmin OCR/NER Collection')
+    parser.add_argument('--throttle', type=int, help=f'Number of seconds to wait between downloads (default = {DEFAULT_THROTTLE})', default=DEFAULT_THROTTLE)
+    parser.add_argument('--tries', type=int, help=f"Number of times to try downloading a given URL before giving up (default = {DEFAULT_MAX_TRIES})", default=DEFAULT_MAX_TRIES)
     parser.add_argument('renmin_dir', help="Directory into which collection should be placed")
     args = parser.parse_args()
 
@@ -27,7 +28,7 @@ def main():
     reconstructor = os.path.join(code_dir, "renmin-reconstructor.py")
 
     # Download the pdf files
-    command = ["python", downloader, "--output", args.renmin_dir]
+    command = ["python", downloader, "--output", args.renmin_dir, "--throttle", str(args.throttle), "--tries", str(args.tries)]
     result = subprocess.run(command)
     if result.returncode:
         print(f"ERROR: downloader failed with code {result.returncode}")
@@ -45,4 +46,3 @@ def main():
     
 if __name__ == '__main__':
     main()
-
