@@ -51,7 +51,7 @@ The files created through this process are tab-separated, UTF-8-encoded text fil
 All named entities are tagged with a type in this dataset, with MISC serving as the type for all entities that do not fit into one of the other categories. Any token that is not part of a named entity mention is tagged with the 'O' tag.
 
 Type     | Description            | Examples
----------+------------------------+----------
+---------|------------------------|----------
 PER      | Person                 | Enrico Rastelli, Beyoncé
 ORG      | Organization           | International Jugglers Association
 COMM     | Commercial Org.        | Penguin Magic, Papermoon Diner
