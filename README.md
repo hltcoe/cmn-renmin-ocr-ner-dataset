@@ -6,20 +6,23 @@ To create the collection, you will need to download the source pdf files from Re
 
 ## Requirements
 
-To recreate the OCR/NER data you will need this distribution, Internet access, and Python. This distribution includes:
+To recreate the OCR/NER data you will need:
 
-* This README
-* Annotation files (```train.encoded.txt```, ```dev.encoded.txt``` and ```test.encoded.txt```) in which token strings have been encoded using keys in the original pdf file. This ensures that the text cannot be recreated without access to the pdfs. These encoded annotation files are in the ```data``` directory.
-* The ```create-renmin-collection.py``` python3 program that converts offsets back to actual token strings. This program, together with the two other scripts it calls (```renmin-downloader.py``` and ```renmin-reconstructor.py```) are in the ```code``` directory.
+* This distribution, which contains:
+    * This README
+    * Annotation files (```train.encoded.txt```, ```dev.encoded.txt``` and ```test.encoded.txt```) in which token strings have been encoded using keys in the original pdf file. This ensures that the text cannot be recreated without access to the pdfs. These encoded annotation files are in the ```data``` directory.
+    * The ```create-renmin-collection.py``` python3 program that converts encoded tokens back to actual token strings. This program, together with the two other scripts it calls (```renmin-downloader.py``` and ```renmin-reconstructor.py```) are in the ```code``` directory.
 
-The Renmin source data are available from
-[the Renmin Ribao Web Site](http://paper.people.com.cn/rmrb). You will need https connectivity to this site.
+* The Renmin source data are available from
+[the Renmin Ribao Web Site](http://paper.people.com.cn/rmrb). You will need http connectivity to this site.
 
-You will need Python 3.6 or later to run these scripts.
+* You will need Python 3.6 or later to run the scripts in this distribution.
+
+* To generate images of the newspaper pages, you will need the ability to convert from pdf to the image format of your choice.
 
 ## Building the Collection
 
-The ```create-renmin-collection.py``` program will download the Renmin pdf pages used by the collection, and use them to decode the tokens listed in the encrypted train, dev, and test files. This script takes a single argument, the name of the directory into which the collection is to be placed. It uses a relative path to find the location of the encoded files, so it should not be moved from the directory in which it was created.
+The ```create-renmin-collection.py``` program will download the Renmin pdf pages used by the collection, and use them to decode the tokens listed in the encrypted train, dev, and test files. This script takes a single argument, the name of the directory into which the collection is to be placed. The scripts use relative paths to find the location of the encoded files and the other scripts, so they should not be moved from the directory in which they were created.
 
 The CoNLL files created by ```create-renmin-collection.py``` should have the following MD5 checksums:
 
@@ -35,7 +38,7 @@ We leave it to the user of the collection to convert the pdf files to images in 
 
 ## Data Format
 
-The files created through this process are tab-separated, UTF-8-encoded text files. Sentences are separated by blank lines. The columns, from left to right, are:
+The files created through this process (```train.conll.txt```, ```dev.conll.txt```, and ```test.conll.txt```) are tab-separated, UTF-8-encoded text files. Sentences are separated by blank lines. The columns, from left to right, are:
 
 1. Token (e.g., '合' or ','). The data are tokenized by character, so a word might span more than one token.
 2. Tag (e.g., ```B-PER``` or ```O```). Tags are in what Wikipedia calls ["IOB2" format](https://en.wikipedia.org/wiki/Inside%E2%80%93outside%E2%80%93beginning_(tagging)).
@@ -68,6 +71,9 @@ WEAP     | Weapon                 | Fat Man, 13"/35 caliber gun
 CHEM     | Chemical               | Iron, NaCl, hydrochloric acid
 MISC     | Other named entity     | Dark Star, Lord of the Rings
 
+## Translation
+
+If anyone cares to create a Chinese version of this README that is better than the output of Google Translate, we will add it to the repository.
 
 ## Citation
 
