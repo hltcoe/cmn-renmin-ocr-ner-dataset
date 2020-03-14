@@ -28,6 +28,7 @@ def main():
     reconstructor = os.path.join(code_dir, "renmin-reconstructor.py")
 
     # Download the pdf files
+    print("Downloading pdf files")
     command = ["python", downloader, "--output", args.renmin_dir, "--throttle", str(args.throttle), "--tries", str(args.tries)]
     result = subprocess.run(command)
     if result.returncode:
@@ -38,11 +39,13 @@ def main():
     for partition in ('train', 'dev', 'test'):
         encoded_file = os.path.join(data_dir, f"{partition}.encoded.txt")
         decoded_file = os.path.join(args.renmin_dir, f"{partition}.conll.txt")
+        print(f"Reconstructing {partition} to {decoded_file}")
         command = ["python", reconstructor, args.renmin_dir, encoded_file, decoded_file]
         result = subprocess.run(command)
         if result.returncode:
             print(f"ERROR: reconstructor failed with code {result.returncode}")
             sys.exit(result.returncode)
-    
+    print("Success.")
+
 if __name__ == '__main__':
     main()

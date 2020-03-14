@@ -6,25 +6,30 @@ To create the collection, you will need to download the source pdf files from Re
 
 ## Requirements
 
-You should be able to recreate the OCR/NER data with only the resources in this distribution. These include:
+To recreate the OCR/NER data you will need this distribution, Internet access, and Python. This distribution includes:
 
 * This README
 * Annotation files (```train.encoded.txt```, ```dev.encoded.txt``` and ```test.encoded.txt```) in which token strings have been encoded using keys in the original pdf file. This ensures that the text cannot be recreated without access to the pdfs. These encoded annotation files are in the ```data``` directory.
-* The ```create-renmin-collection.py``` python3 program that converts offsets
-  back to actual token strings. This program, together with the two other scripts it calls (```renmin-downloader.py``` and ```renmin-reconstructor.py```) are in the ```code``` directory.
+* The ```create-renmin-collection.py``` python3 program that converts offsets back to actual token strings. This program, together with the two other scripts it calls (```renmin-downloader.py``` and ```renmin-reconstructor.py```) are in the ```code``` directory.
 
 The Renmin source data are available from
-[the Renmin Ribao Web Site](http://paper.people.com.cn/rmrb). The included ```create-renmin-collection.py``` script will download these documents for you and then replace the encoded keys with the actual tokens.
+[the Renmin Ribao Web Site](http://paper.people.com.cn/rmrb). You will need https connectivity to this site.
 
-You will need Python 3.6 or later to run these scripts. The scripts use the following two Python packages that are not part of the Python Standard Library; you may need to pip install them:
-
-* ```requests```
-* ```urllib3```
-
+You will need Python 3.6 or later to run these scripts.
 
 ## Building the Collection
 
-The ```create-renmin-collection.py``` program will download the Renmin pdf pages used by the collection, and use them to decode the tokens listed in the train, dev, and test files. This script takes a single argument, the name of the directory into which the collection is to be placed. It uses a relative path to find the location of the encoded files, so it should not be moved from the directory in which it was created.
+The ```create-renmin-collection.py``` program will download the Renmin pdf pages used by the collection, and use them to decode the tokens listed in the encrypted train, dev, and test files. This script takes a single argument, the name of the directory into which the collection is to be placed. It uses a relative path to find the location of the encoded files, so it should not be moved from the directory in which it was created.
+
+The CoNLL files created by ```create-renmin-collection.py``` should have the following MD5 checksums:
+
+File                  | MD5 Checksum
+----------------------|-------------
+```train.conll.txt``` | ```4ba2f972324ad9e11ee81f4991b41492```
+```dev.conll.txt```   | ```670e50e9d71e76f0a1154f542892f7ff```
+```test.conll.txt```  | ```6ee5a3a892900b15f41a411973aad112```
+
+
 
 We leave it to the user of the collection to convert the pdf files to images in a form that meets their needs; this ensures that the image file format, DPI, etc., work with the user's OCR system.
 

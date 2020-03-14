@@ -3,8 +3,6 @@ import os
 import argparse
 import time
 import urllib.error
-import urllib3
-import requests
 from urllib.request import urlretrieve
 
 '''
