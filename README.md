@@ -18,7 +18,7 @@ To recreate the OCR/NER data you will need:
 
 * You will need Python 3.6 or later to run the scripts in this distribution.
 
-* To generate images of the newspaper pages, you will need the ability to convert from pdf to the image format of your choice.
+* To generate images of the newspaper pages, you will need the ability to convert from pdf to the image format of your choice with a DPI of 216.
 
 ## Building the Collection
 
