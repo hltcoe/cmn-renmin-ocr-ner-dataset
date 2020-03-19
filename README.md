@@ -44,7 +44,7 @@ The files created through this process (```train.conll.txt```, ```dev.conll.txt`
 2. Tag (e.g., ```B-PER``` or ```O```). Tags are in what Wikipedia calls ["IOB2" format](https://en.wikipedia.org/wiki/Inside%E2%80%93outside%E2%80%93beginning_(tagging)).
 3. Unique token ID (e.g., ```Renmin_2018_06_01_02-128-9```). This ID encodes the year, month, day, page number, box number, and token number counts left to right (or top to bottom) within the box.
 4. ID of previous token in reading order (e.g., ```Renmin_2018_06_01_02-130-17``` or ```None```). Because the layout is drawn from a printed newspaper, the previous token is not always the immediately preceding token in the file.
-5. xmin (e.g., "276.995563"). This and the following three fields are the coordinates of the box tightly surrounding this token on the page assuming a DPI of 216.
+5. xmin (e.g., "276.995563"). This and the following three fields are the coordinates of the box tightly surrounding the line containing the token on the page assuming a DPI of 216. (This means several tokens may have the same location. The token number indicates the token offset within the line)
 6. ymin
 7. xmax
 8. ymax
