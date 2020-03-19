@@ -79,7 +79,6 @@ def main(args):
     years = [2018]
     months = [6]
     days = [1,2,3,4]
-    days = [1]
     pages_per_issue = {'2018_6_1': 24,
                        '2018_6_2': 12,
                        '2018_6_3': 12,
