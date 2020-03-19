@@ -74,8 +74,6 @@ class Downloader:
                 self.report['success'].append(request)
                    
 def main(args):
-    startTime = time.clock()
-
     years = [2018]
     months = [6]
     days = [1,2,3,4]
@@ -111,7 +109,6 @@ def main(args):
         for url in downloader.report['failure']:
             print(url)
         sys.exit(-1)
-    print(f'...complete, time {(time.clock() - startTime)}')
             
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
