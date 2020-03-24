@@ -2,6 +2,8 @@
 
 Version 1.0
 
+The Renmin OCR/NER Collection supports evaluation of named entity recognition (NER) over optical character recognition (OCR) output. Once constructed, the collection consists of a set of pdf newspaper pages from Renmin Ribao, together with character-tokenized versions of the articles in those pages annotated with fifteen named entity types.
+
 To create the collection, you will need to download the source pdf files from Renmin, then replace the coded tokens in the annotation files with actual tokens recovered from the downloaded pdf files. This somewhat tortuous process is necessary because we do not have the rights to distribute the Renmin source data. Fortunately, the attached scripts should do all of the work for you.
 
 ## Requirements
@@ -18,7 +20,7 @@ To recreate the OCR/NER data you will need:
 
 * You will need Python 3.6 or later to run the scripts in this distribution.
 
-* To generate images of the newspaper pages, you will need the ability to convert from pdf to the image format of your choice with a DPI of 216.
+* To generate images of the newspaper pages, you will need the ability to convert from pdf to the image format of your choice. We assume a DPI of 216; if you use a different DPI, you will need to convert the offsets in the output files.
 
 ## Building the Collection
 
@@ -49,6 +51,8 @@ The files created through this process (```train.conll.txt```, ```dev.conll.txt`
 7. xmax
 8. ymax
 
+Note that although we refer to these files as CoNLL files (after the format used in the CoNLL 2002 and 2003 shared tasks), the term *CoNLL file* has been overloaded in the literature and now is used to refer to a family of related formats. In particular, the original CoNLL files do not conform to the specification given here.
+
 ## Tag Set
 
 All named entities are tagged with a type in this dataset, with MISC serving as the type for all entities that do not fit into one of the other categories. Any token that is not part of a named entity mention is tagged with the 'O' tag.
@@ -71,7 +75,7 @@ WEAP     | Weapon                 | Fat Man, 13"/35 caliber gun
 CHEM     | Chemical               | Iron, NaCl, hydrochloric acid
 MISC     | Other named entity     | Dark Star, Lord of the Rings
 
-## Translation
+## README Translation
 
 If anyone cares to create a Chinese version of this README that is better than the output of Google Translate, we will add it to the repository.
 
